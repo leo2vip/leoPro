@@ -17,6 +17,7 @@
     <!-- </x-bootstrap> -->
     <script type="text/javascript">
     	var path = "<%=request.getContextPath()%>";
+    	//设置命名空间，方便引用
         Ext.Loader.setPath({
             'Ext.ux.desktop': 'js',
             MyDesktop: ''
