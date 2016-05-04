@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration 
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 匹配数据库字段与实体类元素，“_”和大小写等-->
+	<settings>
+    	<setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+    <!-- 命名空间，别名定义 -->
+    <typeAliases>
+         <!--<typeAlias alias="User" type="com.leoProject.main.model.User"/>-->
+         <package name="com.leoProject.main.model"/>
+         <package name="net.shopin.active.model"/>
+    </typeAliases>
+ 	
+    <!-- 映射map -->
+    
+    
+</configuration>

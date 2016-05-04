@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <display-name></display-name>
+  <!-- spring 配置 start -->
+  <!-- 加载spring的配置文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:applicationContext.xml</param-value>
+	</context-param>
+	<!-- ContextLoaderListener监听器的作用就是启动Web容器时，自动装配ApplicationContext的配置信息 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+  
+  
+  <!-- 配置 RESTful 核心控制器 -->
+	<servlet>
+		<servlet-name>springmvc_rest</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 配置初始配置化文件,前面contextConfigLocation看情况二选一 -->  
+		<!-- 默认加载WEB-INF下springMVC-*.xml文件 -->
+		<!-- <init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath*:springmvc-*.xml</param-value>
+		</init-param> -->
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>springmvc_rest</servlet-name>
+		<!-- 此处可以可以配置成*.do，对应struts的后缀习惯 -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+  <!-- spring RESTful 配置 end -->
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

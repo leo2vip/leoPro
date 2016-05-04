@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="newPro"
+  id="myeclipse.1449375785337"
+  context-root="/newPro"
+  j2ee-spec="5.0"
+  archive="newPro.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+
