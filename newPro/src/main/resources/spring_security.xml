@@ -1,0 +1,25 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+xmlns:beans="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+		
+	<http>
+		<!-- pattern拦截路径 ，hasRole('USER') 拥有USER权限的可以访问 -->
+		<intercept-url pattern="/**" access="hasRole('USER')" />
+		<form-login />
+		<logout />
+	</http>
+	
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<!-- 分别配置用户名，密码，权限（authorities） -->
+				<user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" />
+				<user name="bob" password="bobspassword" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>
