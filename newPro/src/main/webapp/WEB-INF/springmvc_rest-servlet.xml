@@ -17,33 +17,7 @@
 		http://www.springframework.org/schema/task
    		http://www.springframework.org/schema/task/spring-task-4.0.xsd">
    	
-   	<!--注解开启 -->
-   	<!--注解适配器 -->
-   	<!-- 说明：开启注解后，便不用在配置 处理器适配器和处理器映射器 -->
- 	<mvc:annotation-driven>
-  		<mvc:message-converters>
-             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
-                 <property name="supportedMediaTypes">
-                     <list>
-                         <value>text/plain;charset=UTF-8</value>
-                         <value>text/html;charset=UTF-8</value>
-                     </list>
-                 </property>
-             </bean>
-             <bean
-                 class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                 <property name="supportedMediaTypes">
-                     <list>
-                         <value>application/json; charset=UTF-8</value>
-                         <value>application/x-www-form-urlencoded; charset=UTF-8</value>
-                     </list>
-                 </property>
-             </bean>
-         </mvc:message-converters>
- 	</mvc:annotation-driven>
- 	
-   	<!-- 设置扫描注解，扫描注入@controller/@service -->
-    <context:component-scan base-package="com.leoProject.main,net.shopin.active"/>
+   	
     
     <!-- 静态资源解析 包括：js\img\css 等 
     	   针对 RESTful风格对前端控制器配置成 “/”，对静态资源解析产生的问题 -->

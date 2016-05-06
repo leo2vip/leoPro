@@ -8,18 +8,20 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		
 	<http>
 		<!-- pattern拦截路径 ，hasRole('USER') 拥有USER权限的可以访问 -->
-		<intercept-url pattern="/**" access="hasRole('USER')" />
+		<!-- <intercept-url pattern="/**" access="hasRole('USER')" /> -->
+		<intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')" />
 		<form-login />
 		<logout />
 	</http>
 	
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
+		<authentication-provider user-service-ref="myUserDetailService">
+			<!-- <user-service>-->
 				<!-- 分别配置用户名，密码，权限（authorities） -->
-				<user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" />
+				<!-- <user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" />
 				<user name="bob" password="bobspassword" authorities="ROLE_USER" />
 			</user-service>
+			 -->
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans>
