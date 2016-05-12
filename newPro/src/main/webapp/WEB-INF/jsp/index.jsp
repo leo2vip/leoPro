@@ -6,9 +6,6 @@
 <title>ExtTop - Desktop Sample App</title>
 	<%request.setAttribute("ctxPath", request.getContextPath());%>
     <link rel="stylesheet" type="text/css" href="${ctxPath}/html/mydesktop/css/desktop.css" />
-    
-    <!-- GC -->
-
     <x-compile>
     <x-bootstrap> 
 	<script type="text/javascript" src="${ctxPath}/html/mydesktop/ext_base/ext-all.js"></script>
@@ -28,6 +25,8 @@
         });
         Ext.require('MyDesktop.App');
         var username = '<sec:authentication property="name"/>';
+        //动态模块
+        var modules = [];
     </script>
     <!-- </x-compile> -->
 </head>
@@ -35,10 +34,29 @@
 <body>
     <a href="http://www.sencha.com" target="_blank" alt="Powered by Ext JS"
        id="poweredby"><div></div></a>
+    <!-- spring security 通过权限控制不同用户显示不同模块 -->   
+    <sec:authorize url="/html/notepad">
+    	<script type="text/javascript">
+    		modules.push(Ext.create('MyDesktop.Notepad',{
+    			id:'Notepad',
+    			title:'文本编辑器',
+    			iconCls:'notepad-shortcut',
+    			launcher : {
+					text : '编辑文本',
+					iconCls : 'notepad-shortcut'
+				}
+    		}));
+    	</script>
+    </sec:authorize>
 	<script type="text/javascript">
 		var myDesktopApp;
 	    Ext.onReady(function () {
-	        myDesktopApp = new MyDesktop.App();
+	        myDesktopApp = Ext.create('MyDesktop.App', {
+				modules : modules
+			});
+	        if (modules.length == 0) {
+				Ext.Msg.alert('无权限', '对不起，您没有此系统的任何使用权限');
+			}
 	    });
 	</script>
 </body>

@@ -23,17 +23,18 @@
 	</beans:bean>
 	
 	<http use-expressions="true" authentication-manager-ref="authenticationManager">
-		<intercept-url pattern="/html/**" access="hasAnyAuthority('PRI_ALL')" />
+		<!-- <intercept-url pattern="/html/**" access="hasAnyAuthority('PRI_ALL')" /> -->
+		<intercept-url pattern="/html/notepad/**" access="hasAnyAuthority('PRI_READ_AND_WRITE')"/>
 		<!-- login-page表示用户登陆时显示我们自定义的login.jsp
 			 authentication-failure-url表示用户登陆失败时，跳转到哪个页面
 			 default-target-url表示登陆成功时，跳转到哪个页面
 			 login-processing-url是自定义登陆页面的action，切勿与controller的action相同-->
-		<form-login authentication-failure-url="/html/mydesktop/index.html?error=true"
+		<form-login authentication-failure-url="/html/mydesktop/erLogin.html?error=true"
 			default-target-url="/html/mydesktop/login.html" login-page="/login.jsp"
 			login-processing-url="/login_check.html" password-parameter="password"
 			username-parameter="username" always-use-default-target="true" />
-		<logout logout-success-url="/html/mydesktop/login.html" logout-url="/logout.html" />
-		<access-denied-handler error-page="/html/mydesktop/login.html?deny=true"/>
+		<logout logout-success-url="/html/mydesktop/reLogin.html" logout-url="/logout.html" />
+		<access-denied-handler error-page="/html/mydesktop/erLogin.html?deny=true"/>
 	</http>
 
 </beans:beans>

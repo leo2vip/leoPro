@@ -32,12 +32,24 @@ public class LoginController {
 	 * @author qutengfei 
 	 * @description 失败返回页
 	 */
-	@RequestMapping("/index")
-	public ModelAndView menu(HttpServletRequest request){
+	@RequestMapping("/erLogin")
+	public ModelAndView erLogin(HttpServletRequest request){
 		System.out.println("success to menu");
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/login");
-		modelAndView.addObject("error", true);
+		modelAndView.setViewName("../login");
+		modelAndView.addObject("error", "登陆信息错误");
+		return modelAndView;
+	}
+	/***
+	 * @author qutengfei 
+	 * @description 退出重新登陆
+	 */
+	@RequestMapping("/reLogin")
+	public ModelAndView reLogin(HttpServletRequest request){
+		System.out.println("success to menu");
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("../login");
+		//modelAndView.addObject("error", true);
 		return modelAndView;
 	}
 }

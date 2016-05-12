@@ -27,8 +27,9 @@ Ext.define('MyDesktop.App', {
     },
     //开始菜单左边选框
     getModules : function(){
-        return [
-            new MyDesktop.Notepad(),
+    	return this.modules;
+        //return [
+        //    new MyDesktop.Notepad(),
             //new MyDesktop.VideoWindow(),
             //new MyDesktop.SystemStatus(),
             //new MyDesktop.GridWindow(),
@@ -36,27 +37,36 @@ Ext.define('MyDesktop.App', {
             //new MyDesktop.AccordionWindow(),
             //new MyDesktop.BogusMenuModule(),
             //new MyDesktop.BogusModule()
-        ];
+        //];
     },
 
     getDesktopConfig: function () {
         var me = this, ret = me.callParent();
-
+        //spring security动态获取
+        var shotcutIcons = [];
+        for (i in this.getModules()) {
+			var module = this.getModules()[i];
+			shotcutIcons.push({
+				name : module.launcher.text,
+				iconCls : module.iconCls,
+				module : module.id
+			});
+		}
+        
         return Ext.apply(ret, {
-            //cls: 'ux-desktop-black',
-
             contextMenuItems: [
-                { text: 'Change Settings', handler: me.onSettings, scope: me }
+                { text: '设置', handler: me.onSettings, scope: me }
             ],
 
             shortcuts: Ext.create('Ext.data.Store', {
                 model: 'Ext.ux.desktop.ShortcutModel',
-                data: [
+                data: shotcutIcons
+                //data: [
                     //{ name: 'Grid Window', iconCls: 'grid-shortcut', module: 'grid-win' },
                     //{ name: 'Accordion Window', iconCls: 'accordion-shortcut', module: 'acc-win' },
-                    { name: 'Notepad', iconCls: 'notepad-shortcut', module: 'notepad' },
+                    //{ name: 'Notepad', iconCls: 'notepad-shortcut', module: 'notepad' },
                     //{ name: 'System Status', iconCls: 'cpu-shortcut', module: 'systemstatus'}
-                ]
+                //]
             }),
 
             wallpaper: path+'/html/mydesktop/wallpapers/Wood-Sencha.jpg',
