@@ -11,34 +11,31 @@ Ext.define('MyDesktop.App', {
         'Ext.window.MessageBox',
         'Ext.ux.desktop.ShortcutModel',
         'MyDesktop.Settings',
-        //'MyDesktop.SystemStatus',
-        'MyDesktop.VideoWindow',
-        //'MyDesktop.GridWindow',
-        'MyDesktop.TabWindow',
-        //'MyDesktop.AccordionWindow',
         'MyDesktop.Notepad',
-        'MyDesktop.BogusMenuModule',
-        'MyDesktop.BogusModule'
+        //'MyDesktop.SystemStatus',
+        //'MyDesktop.VideoWindow',
+        //'MyDesktop.GridWindow',
+        //'MyDesktop.TabWindow',
+        //'MyDesktop.AccordionWindow',
+        //'MyDesktop.BogusMenuModule',
+        //'MyDesktop.BogusModule'
         
     ],
 
     init: function() {
-        // custom logic before getXYZ methods get called...
         this.callParent();
-
-        // now ready...
     },
-    
+    //开始菜单左边选框
     getModules : function(){
         return [
-            new MyDesktop.VideoWindow(),
+            new MyDesktop.Notepad(),
+            //new MyDesktop.VideoWindow(),
             //new MyDesktop.SystemStatus(),
             //new MyDesktop.GridWindow(),
-            new MyDesktop.TabWindow(),
+            //new MyDesktop.TabWindow(),
             //new MyDesktop.AccordionWindow(),
-            new MyDesktop.Notepad(),
-            new MyDesktop.BogusMenuModule(),
-            new MyDesktop.BogusModule()
+            //new MyDesktop.BogusMenuModule(),
+            //new MyDesktop.BogusModule()
         ];
     },
 
@@ -62,7 +59,7 @@ Ext.define('MyDesktop.App', {
                 ]
             }),
 
-            wallpaper: path+'/html/mydesktop/wallpapers/Blue-Sencha.jpg',
+            wallpaper: path+'/html/mydesktop/wallpapers/Wood-Sencha.jpg',
             wallpaperStretch: false
         });
     },
@@ -79,14 +76,14 @@ Ext.define('MyDesktop.App', {
                 width: 100,
                 items: [
                     {
-                        text:'Settings',
+                        text:'设置',
                         iconCls:'settings',
                         handler: me.onSettings,
                         scope: me
                     },
                     '-',
                     {
-                        text:'Logout',
+                        text:'退出',
                         iconCls:'logout',
                         handler: me.onLogout,
                         scope: me
@@ -95,7 +92,7 @@ Ext.define('MyDesktop.App', {
             }
         });
     },
-
+    //任务栏快速启动
     getTaskbarConfig: function () {
         var ret = this.callParent();
 
@@ -111,7 +108,7 @@ Ext.define('MyDesktop.App', {
     },
 
     onLogout: function () {
-        Ext.Msg.confirm('Logout', 'Are you sure you want to logout?', function(buttonId) {
+        Ext.Msg.confirm('退出', '确定要退出本系统?', function(buttonId) {
 			if (buttonId == 'ok' || buttonId == 'yes') {
 				window.location = path + "/logout.html";
 			}

@@ -23,7 +23,8 @@
             'Ext.ux.desktop': '${ctxPath}/html/mydesktop/js',
             'MyDesktop':'${ctxPath}/html/mydesktop',
             'Leo':'${ctxPath}/js',
-            MyDesktop: ''
+            MyDesktop: '',
+            mine:''
         });
         Ext.require('MyDesktop.App');
         var username = '<sec:authentication property="name"/>';
