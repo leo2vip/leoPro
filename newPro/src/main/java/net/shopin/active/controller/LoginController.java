@@ -1,21 +1,17 @@
 package net.shopin.active.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
-import net.shopin.active.service.IfirstService;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-<<<<<<< HEAD:newPro/src/main/java/net/shopin/active/controller/promotionController.java
-=======
 import net.shopin.active.service.IUserService;
 import net.shopin.active.service.IfirstService;
 
->>>>>>> 8d52e7f... leo add spring security easy:newPro/src/main/java/net/shopin/active/controller/LoginController.java
 @Controller
 @RequestMapping("/html/mydesktop")
 public class LoginController {
@@ -26,17 +22,11 @@ public class LoginController {
 	 * @Date 20160401
 	 */
 	@RequestMapping("/login")
-<<<<<<< HEAD:newPro/src/main/java/net/shopin/active/controller/promotionController.java
-	public void login(){
-		firstService.first();
-		System.out.println("success1");
-=======
 	public ModelAndView login(){
 		System.out.println("登陆成功=============================");
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/jsp/index");
 		return modelAndView;
->>>>>>> 8d52e7f... leo add spring security easy:newPro/src/main/java/net/shopin/active/controller/LoginController.java
 	}
 	/***
 	 * @author qutengfei 
