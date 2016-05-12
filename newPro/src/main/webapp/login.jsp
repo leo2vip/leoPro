@@ -15,7 +15,7 @@
 <style type="text/css">
 html, body { width:100%; height:100%; overflow:hidden}
 /* body { margin:0; padding:0; background:-webkit-gradient(radial, center center, 0, center center, 460, from(#0064a4), to(#2F2727)); background:-webkit-radial-gradient(circle, #0064a4, #2F2727); background:-moz-radial-gradient(circle, #0064a4, #2F2727); background:-ms-radial-gradient(circle, #0064a4, #2F2727); filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0064a4', endColorstr='#2F2727'); -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr='#0064a4', endColorstr='#2F2727')"} */
-body {background-size:cover;background:url(html/mydesktop/wallpapers/wall.jpg) no-repeat  top center;}
+body {background-size:cover;background:url(${ctxPath}/html/mydesktop/wallpapers/wall.jpg) no-repeat  top center;}
 .wrap { position:relative; top:50%; width:380px; height:260px; margin:-140px auto 0}
 /* .titleBg { position:relative; top:51%; height:60px; margin:0 auto; background:#007aa4; box-shadow:0 0 20px #0a3e5f; animation:centerToAll 1s linear; -moz-animation:centerToAll 1s ease; -ms-animation:centerToAll 1s ease; -webkit-animation:centerToAll 1s ease; -o-animation:centerToAll 1s ease} */
 .loginForm { box-shadow:5px 5px 10px rgba(0,0,0,.2); position:absolute; z-index:0; background-color:#fff; border-radius:4px; height:100%; width:100%; background:-webkit-gradient(linear, left top, left 24, from(#eee), color-stop(4%, #fff), to(#eee)); background:-moz-linear-gradient(top, #eee, #fff 1px, #eee 24px); background:-o-linear-gradient(top, #eee, #fff 1px, #eee 24px); animation:loginForm 2s ease; -moz-animation:loginForm 2s ease; -ms-animation:loginForm 2s ease; -webkit-animation:loginForm 2s ease; -o-animation:loginForm 2s ease}
