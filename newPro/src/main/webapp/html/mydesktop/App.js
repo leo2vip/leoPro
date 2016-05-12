@@ -8,6 +8,9 @@ Ext.define('MyDesktop.App', {
     extend: 'Ext.ux.desktop.App',
 
     requires: [
+        'Ext.window.MessageBox',
+        'Ext.ux.desktop.ShortcutModel',
+        'MyDesktop.Settings',
         'MyDesktop.Notepad',
         //'MyDesktop.SystemStatus',
         //'MyDesktop.VideoWindow',
