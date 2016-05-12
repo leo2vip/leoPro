@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.shopin.active.mapper.roleMapper" >
+  <resultMap id="BaseResultMap" type="net.shopin.active.model.security.role" >
+    <id column="sid" property="sid" jdbcType="INTEGER" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sid, role
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where sid = #{sid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role
+    where sid = #{sid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.shopin.active.model.security.role" >
+    insert into role (sid, role)
+    values (#{sid,jdbcType=INTEGER}, #{role,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.shopin.active.model.security.role" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.shopin.active.model.security.role" >
+    update role
+    <set >
+      <if test="role != null" >
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.shopin.active.model.security.role" >
+    update role
+    set role = #{role,jdbcType=VARCHAR}
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByModel" resultMap="BaseResultMap" parameterType="net.shopin.active.model.security.role" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    <where>
+      <if test="sid != null" >
+        and sid = #{sid,jdbcType=INTEGER}
+      </if>
+      <if test="role != null" >
+        and role = #{role,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

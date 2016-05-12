@@ -11,11 +11,11 @@ Ext.define('MyDesktop.App', {
         'Ext.window.MessageBox',
         'Ext.ux.desktop.ShortcutModel',
         'MyDesktop.Settings',
-        'MyDesktop.SystemStatus',
+        //'MyDesktop.SystemStatus',
         'MyDesktop.VideoWindow',
-        'MyDesktop.GridWindow',
+        //'MyDesktop.GridWindow',
         'MyDesktop.TabWindow',
-        'MyDesktop.AccordionWindow',
+        //'MyDesktop.AccordionWindow',
         'MyDesktop.Notepad',
         'MyDesktop.BogusMenuModule',
         'MyDesktop.BogusModule'
@@ -32,10 +32,10 @@ Ext.define('MyDesktop.App', {
     getModules : function(){
         return [
             new MyDesktop.VideoWindow(),
-            new MyDesktop.SystemStatus(),
-            new MyDesktop.GridWindow(),
+            //new MyDesktop.SystemStatus(),
+            //new MyDesktop.GridWindow(),
             new MyDesktop.TabWindow(),
-            new MyDesktop.AccordionWindow(),
+            //new MyDesktop.AccordionWindow(),
             new MyDesktop.Notepad(),
             new MyDesktop.BogusMenuModule(),
             new MyDesktop.BogusModule()
@@ -55,10 +55,10 @@ Ext.define('MyDesktop.App', {
             shortcuts: Ext.create('Ext.data.Store', {
                 model: 'Ext.ux.desktop.ShortcutModel',
                 data: [
-                    { name: 'Grid Window', iconCls: 'grid-shortcut', module: 'grid-win' },
-                    { name: 'Accordion Window', iconCls: 'accordion-shortcut', module: 'acc-win' },
+                    //{ name: 'Grid Window', iconCls: 'grid-shortcut', module: 'grid-win' },
+                    //{ name: 'Accordion Window', iconCls: 'accordion-shortcut', module: 'acc-win' },
                     { name: 'Notepad', iconCls: 'notepad-shortcut', module: 'notepad' },
-                    { name: 'System Status', iconCls: 'cpu-shortcut', module: 'systemstatus'}
+                    //{ name: 'System Status', iconCls: 'cpu-shortcut', module: 'systemstatus'}
                 ]
             }),
 
@@ -67,7 +67,7 @@ Ext.define('MyDesktop.App', {
         });
     },
 
-    // config for the start menu
+    // 页面开始菜单
     getStartConfig : function() {
         var me = this, ret = me.callParent();
 
@@ -111,7 +111,11 @@ Ext.define('MyDesktop.App', {
     },
 
     onLogout: function () {
-        Ext.Msg.confirm('Logout', 'Are you sure you want to logout?');
+        Ext.Msg.confirm('Logout', 'Are you sure you want to logout?', function(buttonId) {
+			if (buttonId == 'ok' || buttonId == 'yes') {
+				window.location = path + "/logout.html";
+			}
+		});
     },
 
     onSettings: function () {

@@ -1,27 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"
-xmlns:beans="http://www.springframework.org/schema/beans"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/security
-		http://www.springframework.org/schema/security/spring-security.xsd">
-		
-	<http>
-		<!-- pattern拦截路径 ，hasRole('USER') 拥有USER权限的可以访问 -->
-		<!-- <intercept-url pattern="/**" access="hasRole('USER')" /> -->
-		<intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')" />
-		<form-login />
-		<logout />
-	</http>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<beans:bean id="authenticationProvider"
+		class="net.shopin.login.service.MyAuthenticationProvider" />
+	<beans:bean id="authenticationManager"
+		class="net.shopin.login.service.MyAuthenticationManager">
+		<beans:constructor-arg index="0"
+			ref="authenticationProvider" />
+	</beans:bean>
+	<beans:bean id="accessDecisionManager"
+		class="org.springframework.security.access.vote.AffirmativeBased">
+		<beans:constructor-arg index="0">
+			<beans:list>
+				<beans:bean class="net.shopin.login.service.PrivilegeVoter" />
+			</beans:list>
+		</beans:constructor-arg>
+	</beans:bean>
 	
-	<authentication-manager>
-		<authentication-provider user-service-ref="myUserDetailService">
-			<!-- <user-service>-->
-				<!-- 分别配置用户名，密码，权限（authorities） -->
-				<!-- <user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" />
-				<user name="bob" password="bobspassword" authorities="ROLE_USER" />
-			</user-service>
-			 -->
-		</authentication-provider>
-	</authentication-manager>
+	<http use-expressions="true" authentication-manager-ref="authenticationManager">
+		<intercept-url pattern="/html/**" access="hasAnyAuthority('PRI_ALL')" />
+		<!-- login-page表示用户登陆时显示我们自定义的login.jsp
+			 authentication-failure-url表示用户登陆失败时，跳转到哪个页面
+			 default-target-url表示登陆成功时，跳转到哪个页面
+			 login-processing-url是自定义登陆页面的action，切勿与controller的action相同-->
+		<form-login authentication-failure-url="/html/mydesktop/index.html?error=true"
+			default-target-url="/html/mydesktop/login.html" login-page="/login.jsp"
+			login-processing-url="/login_check.html" password-parameter="password"
+			username-parameter="username" always-use-default-target="true" />
+		<logout logout-success-url="/html/mydesktop/login.html" logout-url="/logout.html" />
+		<access-denied-handler error-page="/html/mydesktop/login.html?deny=true"/>
+	</http>
+
 </beans:beans>

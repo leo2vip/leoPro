@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.shopin.active.mapper.user_roleMapper" >
+  <resultMap id="BaseResultMap" type="net.shopin.active.model.security.user_role" >
+    <id column="sid" property="sid" jdbcType="INTEGER" />
+    <result column="user_sid" property="user_sid" jdbcType="INTEGER" />
+    <result column="role_sid" property="role_sid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sid, user_sid, role_sid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_role
+    where sid = #{sid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_role
+    where sid = #{sid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.shopin.active.model.security.user_role" >
+    insert into user_role (sid, user_sid, role_sid
+      )
+    values (#{sid,jdbcType=INTEGER}, #{user_sid,jdbcType=INTEGER}, #{role_sid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.shopin.active.model.security.user_role" >
+    insert into user_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="user_sid != null" >
+        user_sid,
+      </if>
+      <if test="role_sid != null" >
+        role_sid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="user_sid != null" >
+        #{user_sid,jdbcType=INTEGER},
+      </if>
+      <if test="role_sid != null" >
+        #{role_sid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.shopin.active.model.security.user_role" >
+    update user_role
+    <set >
+      <if test="user_sid != null" >
+        user_sid = #{user_sid,jdbcType=INTEGER},
+      </if>
+      <if test="role_sid != null" >
+        role_sid = #{role_sid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.shopin.active.model.security.user_role" >
+    update user_role
+    set user_sid = #{user_sid,jdbcType=INTEGER},
+      role_sid = #{role_sid,jdbcType=INTEGER}
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByModel" resultMap="BaseResultMap" parameterType="net.shopin.active.model.security.user_role" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_role
+    <where>
+      <if test="sid != null" >
+        and sid = #{sid,jdbcType=INTEGER}
+      </if>
+      <if test="user_sid != null" >
+        and user_sid = #{user_sid,jdbcType=INTEGER}
+      </if>
+      <if test="role_sid != null" >
+        and role_sid = #{role_sid,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+</mapper>
