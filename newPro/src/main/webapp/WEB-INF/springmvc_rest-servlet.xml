@@ -58,7 +58,7 @@
    	<!--视图解析器 <property name="prefix" value="/html/"/> -->
    	<bean
    		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="prefix" value="/WEB-INF/"/>
 		<property name="suffix" value=".jsp"/>
    	</bean>	
    	
