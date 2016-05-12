@@ -72,7 +72,7 @@ Ext.define('MyDesktop.App', {
         var me = this, ret = me.callParent();
 
         return Ext.apply(ret, {
-            title: 'Don Griffin',
+            title: username,
             iconCls: 'user',
             height: 300,
             toolConfig: {

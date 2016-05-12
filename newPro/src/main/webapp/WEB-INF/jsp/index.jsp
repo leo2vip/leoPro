@@ -2,6 +2,7 @@
 <html>
 <head>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <title>ExtTop - Desktop Sample App</title>
 	<%request.setAttribute("ctxPath", request.getContextPath());%>
     <link rel="stylesheet" type="text/css" href="${ctxPath}/html/mydesktop/css/desktop.css" />
@@ -26,7 +27,6 @@
         });
         Ext.require('MyDesktop.App');
         var username = '<sec:authentication property="name"/>';
-        alert(username);
     </script>
     <!-- </x-compile> -->
 </head>
