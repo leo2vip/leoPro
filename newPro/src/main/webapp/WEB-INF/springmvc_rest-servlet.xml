@@ -28,7 +28,7 @@
 <!-- 	<mvc:resources location="/html/extjs4.2.1/" mapping="/html/extjs4.2.1/**"/>     -->
 <!--    <mvc:resources location="/html/JQuery/" mapping="/html/JQuery/**"/>  -->
     <mvc:resources location="/html/mydesktop/" mapping="/html/mydesktop/**"/>
-    
+    <mvc:resources location="/html/js/" mapping="/html/js/**"/>
    	<!--视图解析器 <property name="prefix" value="/html/"/> -->
    	<bean
    		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

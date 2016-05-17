@@ -19,7 +19,7 @@
         Ext.Loader.setPath({
             'Ext.ux.desktop': '${ctxPath}/html/mydesktop/js',
             'MyDesktop':'${ctxPath}/html/mydesktop',
-            'Leo':'${ctxPath}/js',
+            'Leo':'${ctxPath}/html/js',
             MyDesktop: '',
             mine:''
         });
@@ -34,7 +34,20 @@
 <body>
     <a href="http://www.sencha.com" target="_blank" alt="Powered by Ext JS"
        id="poweredby"><div></div></a>
-    <!-- spring security 通过权限控制不同用户显示不同模块 -->   
+    <!-- spring security 通过权限控制不同用户显示不同模块 -->
+    <sec:authorize url="/html/userAuth">
+    	<script type="text/javascript">
+    		modules.push(Ext.create('Leo.UserManagement',{
+    			id:'UserManagement',
+    			title:'权限管理',
+    			iconCls:'grid-userAuth',
+    			launcher : {
+					text : '权限管理',
+					iconCls : 'icon-userAuth'
+				}
+    		}));
+    	</script>
+    </sec:authorize>
     <sec:authorize url="/html/notepad">
     	<script type="text/javascript">
     		modules.push(Ext.create('MyDesktop.Notepad',{

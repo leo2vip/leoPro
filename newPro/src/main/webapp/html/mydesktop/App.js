@@ -12,6 +12,7 @@ Ext.define('MyDesktop.App', {
         'Ext.ux.desktop.ShortcutModel',
         'MyDesktop.Settings',
         'MyDesktop.Notepad',
+        'Leo.UserManagement'
         //'MyDesktop.SystemStatus',
         //'MyDesktop.VideoWindow',
         //'MyDesktop.GridWindow',
